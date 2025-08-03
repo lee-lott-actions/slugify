@@ -1,0 +1,29 @@
+name: Slugify Team Name
+description: A GitHub Action to transform a repo or team name into a GitHub-compatible slug
+author: Louisiana Office of Technology Services
+
+inputs:
+  input-string:
+    description: 'The string to slugify (e.g., "My Awesome Team")'
+    required: true
+
+outputs:
+  result:
+    description: 'Result of the slugify ("success" or "failure")'
+    value: ${{ steps.action.outputs.result }}   
+  slug:
+    description: 'The slugified string (e.g., "my-awesome-team")'
+    value: ${{ steps.action.outputs.slug }}
+  error-message:
+    description: 'Error message if the slugify fails'
+    value: ${{ steps.action.outputs.error-message }}    
+
+runs:
+  using: composite
+  steps:
+    - name: Slugify Name
+      id: action
+      run: |
+        source ${{ github.action_path }}/action.sh        
+        slugify_string "${{ inputs.input-string }}"
+      shell: bash
