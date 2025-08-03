@@ -1,6 +1,6 @@
 name: Slugify Team Name
 description: A GitHub Action to transform a repo or team name into a GitHub-compatible slug
-author: Louisiana Office of Technology Services
+author: Lee Lott
 
 inputs:
   input-string:
