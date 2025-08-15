@@ -39,7 +39,7 @@ This GitHub Action transforms a string into a GitHub-compatible slug (e.g., conv
        steps:
          - name: Slugify String
            id: slugify
-           uses: lee-lott-actions/slugify@v1.0.0
+           uses: lee-lott-actions/slugify@v1
            with:
              name: 'My Awesome Repo'
          - name: Print Slug
