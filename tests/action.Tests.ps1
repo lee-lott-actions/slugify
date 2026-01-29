@@ -3,7 +3,7 @@ BeforeAll {
   . "$PSScriptRoot/../action.ps1"
 }
 
-Describe "Slugify-String" {
+Describe "ConvertTo-Slug" {
   BeforeEach {
     # Setup function to run before each test
     $env:GITHUB_OUTPUT = [System.IO.Path]::GetTempFileName()
@@ -17,7 +17,7 @@ Describe "Slugify-String" {
   }
 
   It "converts string to valid slug" {
-    $result = Slugify-String -InputString "Hello World! 123"
+    $result = ConvertTo-Slug -InputString "Hello World! 123"
     
     $output = Get-Content $env:GITHUB_OUTPUT
     $output | Should -Contain "result=success"
@@ -26,7 +26,7 @@ Describe "Slugify-String" {
   }
 
   It "handles special characters" {
-    $result = Slugify-String -InputString "Test@#  Spaces--Test"
+    $result = ConvertTo-Slug -InputString "Test@#  Spaces--Test"
     
     $output = Get-Content $env:GITHUB_OUTPUT
     $output | Should -Contain "result=success"
@@ -35,7 +35,7 @@ Describe "Slugify-String" {
   }
 
   It "handles leading and trailing hyphens" {
-    $result = Slugify-String -InputString "--Leading-Trailing--"
+    $result = ConvertTo-Slug -InputString "--Leading-Trailing--"
     
     $output = Get-Content $env:GITHUB_OUTPUT
     $output | Should -Contain "result=success"
@@ -44,7 +44,7 @@ Describe "Slugify-String" {
   }
 
   It "fails with empty input" {
-    Slugify-String -InputString ""
+    ConvertTo-Slug -InputString ""
     
     $output = Get-Content $env:GITHUB_OUTPUT
     $output | Should -Contain "result=failure"

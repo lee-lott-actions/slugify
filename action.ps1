@@ -1,4 +1,4 @@
-function Slugify-String {
+function ConvertTo-Slug {
   param(
     [string]$InputString
   )
