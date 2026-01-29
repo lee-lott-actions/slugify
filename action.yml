@@ -23,7 +23,7 @@ runs:
   steps:
     - name: Slugify Name
       id: action
+      shell: pwsh
       run: |
-        source ${{ github.action_path }}/action.sh        
-        slugify_string "${{ inputs.input-string }}"
-      shell: bash
+        . "${{ github.action_path }}/action.ps1"
+        ConvertTo-Slug "${{ inputs.input-string }}"
