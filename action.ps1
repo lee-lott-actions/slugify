@@ -25,9 +25,10 @@ function ConvertTo-Slug {
     # Return the slug to stdout for potential piping or further use
     Write-Output "$slug"
   } catch {
-    Write-Host "Failed to slugify string."
+	$errorMsg = "Error: Failed to slugify string. Exception: $($_.Exception.Message)"
     Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
     Add-Content -Path $env:GITHUB_OUTPUT -Value "slug="
-    Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=Failed to slugify string."
+    Add-Content -Path $env:GITHUB_OUTPUT -Value "error-message=$errorMsg"
+	Write-Host $errorMsg
   }
 }
