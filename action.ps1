@@ -21,6 +21,9 @@ function ConvertTo-Slug {
     Add-Content -Path $env:GITHUB_OUTPUT -Value "result=success"
     Add-Content -Path $env:GITHUB_OUTPUT -Value "slug=$slug"
     Write-Host "Slugify succeeded: $slug"
+
+	# Mock this to test exception throw in Unit Tests.
+    Write-Output "$slug"
   } catch {
 	$errorMsg = "Error: Failed to slugify string. Exception: $($_.Exception.Message)"
     Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
