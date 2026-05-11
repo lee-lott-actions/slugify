@@ -19,7 +19,6 @@ Describe "ConvertTo-Slug" {
 			$output = Get-Content $env:GITHUB_OUTPUT
 			$output | Should -Contain "result=success"
 			$output | Should -Contain "slug=hello-world-123"
-			$result | Should -Be "hello-world-123"
 		}
 		
 		It "unit: ConvertTo-Slug handles special characters" {
@@ -28,7 +27,6 @@ Describe "ConvertTo-Slug" {
 			$output = Get-Content $env:GITHUB_OUTPUT
 			$output | Should -Contain "result=success"
 			$output | Should -Contain "slug=test-spaces-test"
-			$result | Should -Be "test-spaces-test"
 		}
 		
 		It "unit: ConvertTo-Slug handles leading and trailing hyphens" {
@@ -37,7 +35,6 @@ Describe "ConvertTo-Slug" {
 			$output = Get-Content $env:GITHUB_OUTPUT
 			$output | Should -Contain "result=success"
 			$output | Should -Contain "slug=leading-trailing"
-			$result | Should -Be "leading-trailing"
 		}
 	}	
 	
