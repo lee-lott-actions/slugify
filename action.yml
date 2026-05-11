@@ -26,4 +26,5 @@ runs:
       shell: pwsh
       run: |
         . "${{ github.action_path }}/action.ps1"
-        ConvertTo-Slug "${{ inputs.input-string }}"
+        ConvertTo-Slug `
+          -InputString "${{ inputs.input-string }}"
