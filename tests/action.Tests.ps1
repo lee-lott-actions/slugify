@@ -51,7 +51,14 @@ Describe "ConvertTo-Slug" {
 
 	Context "Exception Failure Cases" {
 		It "unit: ConvertTo-Slug fails with exception" {
-			Mock Write-Output { throw "Write-Output Error" }
+			Mock Write-Host {
+				param([Parameter(Position=0)][object]$Object)
+	
+				# Throw only for the Write-Host call with $Object like a specific string
+				if ($Object -like "Slugifying *") {
+					throw "Write-Host Error"
+				}
+			}
 	
 			try {
 				$result = ConvertTo-Slug -InputString "Hello World! 123"
