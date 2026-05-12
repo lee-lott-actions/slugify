@@ -2,9 +2,7 @@ function ConvertTo-Slug {
   param(
     [string]$InputString
   )
-
-  Write-Host "Slugifying input string: $InputString"
-
+  
   if ([string]::IsNullOrEmpty($InputString)) {
     Write-Host "Error: INPUT-STRING must be provided."
     Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
@@ -14,6 +12,8 @@ function ConvertTo-Slug {
   }
 
   try {
+  	Write-Host "Slugifying input string: $InputString"
+	
     # Convert to lowercase, replace spaces and special characters with hyphens,
     # remove leading/trailing hyphens, and ensure only alphanumeric and hyphens remain
     $slug = $InputString.ToLower() -replace '[^a-z0-9]+', '-' -replace '^-|-$', ''
@@ -21,9 +21,6 @@ function ConvertTo-Slug {
     Add-Content -Path $env:GITHUB_OUTPUT -Value "result=success"
     Add-Content -Path $env:GITHUB_OUTPUT -Value "slug=$slug"
     Write-Host "Slugify succeeded: $slug"
-    
-    # Return the slug to stdout for potential piping or further use
-    Write-Output "$slug"
   } catch {
 	$errorMsg = "Error: Failed to slugify string. Exception: $($_.Exception.Message)"
     Add-Content -Path $env:GITHUB_OUTPUT -Value "result=failure"
